@@ -367,7 +367,7 @@ body {
 	position: sticky;
 	top: 0;
 	z-index: 10;
-	padding: var(--space-lg) var(--space-xs);
+	padding: var(--space-xs) var(--space-xs);
 	font-size: 0.85rem;
 	font-weight: 800;
 	color: var(--text-secondary);
@@ -429,6 +429,7 @@ body {
 	right: 3px;
 	border-radius: var(--radius-md);
 	padding: var(--space-sm);
+	padding-right:0;
 	cursor: pointer;
 	overflow: hidden;
 	transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
@@ -715,7 +716,7 @@ body {
    ============================ */
 @media (min-width: 480px) {
 	:root {
-		--cell-height: 70px;
+		--cell-height: 35px;
 		--time-col-width: 60px;
 	}
 

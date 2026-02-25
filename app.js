@@ -4,7 +4,7 @@
 const courses = [
   {
     id: 1,
-    name: "(외국인전용)한국 비자 정책의 이해",
+    name: "(외국인)한국 비자 정책의 이해",
     code: "U0099344",
     type: "교양선택",
     credits: 2,
