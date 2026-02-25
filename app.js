@@ -546,7 +546,6 @@ function openModal(course) {
   }).join("<br>");
 
   body.innerHTML = `
-    <div class="modal-handle"></div>
     <div class="modal-course-name" style="color: var(${colorVar})">
       <span class="modal-course-emoji">${emoji}</span> ${course.name}
     </div>
@@ -599,6 +598,59 @@ function openModal(course) {
 
   overlay.classList.add("active");
   document.body.style.overflow = "hidden";
+  
+  // 모달 위치 초기화
+  const modal = document.getElementById("modal");
+  modal.style.transform = "";
+}
+
+/** 모달 드래그 기능 설정 (초기 1회 실행) */
+function initModalDrag() {
+  const modal = document.getElementById("modal");
+  const handle = modal.querySelector(".modal-handle");
+  if (!handle) return;
+
+  let isDragging = false;
+  let startY = 0;
+  let currentY = 0;
+
+  const onDragStart = (e) => {
+    isDragging = true;
+    startY = (e.type.includes("touch") ? e.touches[0].clientY : e.clientY);
+    modal.classList.add("dragging");
+  };
+
+  const onDragMove = (e) => {
+    if (!isDragging) return;
+    const y = (e.type.includes("touch") ? e.targetTouches[0].clientY : e.clientY);
+    currentY = Math.max(0, y - startY);
+    modal.style.transform = `translateY(${currentY}px)`;
+    
+    // 터치 스크롤 방지
+    if (e.cancelable) e.preventDefault();
+  };
+
+  const onDragEnd = () => {
+    if (!isDragging) return;
+    isDragging = false;
+    modal.classList.remove("dragging");
+
+    if (currentY > 150) {
+      closeModal();
+    } else {
+      modal.style.transform = "translateY(0)";
+    }
+    currentY = 0;
+  };
+
+  handle.addEventListener("mousedown", onDragStart);
+  handle.addEventListener("touchstart", onDragStart, { passive: true });
+
+  window.addEventListener("mousemove", onDragMove);
+  window.addEventListener("touchmove", onDragMove, { passive: false });
+
+  window.addEventListener("mouseup", onDragEnd);
+  window.addEventListener("touchend", onDragEnd);
 }
 
 function closeModal() {
@@ -644,6 +696,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // 시간표 렌더링
   renderTimetable();
   renderTodayBanner();
+
+  // 모달 드래그 초기화
+  initModalDrag();
 
   // 초기 접기 상태 적용
   toggleTodayFold(true);

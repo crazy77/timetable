@@ -3,19 +3,23 @@
    ============================ */
 :root {
 	/* 색상 팔레트 - Deeper & Modern Dark */
-	--bg-primary: #050508;
-	--bg-secondary: #0d0d14;
-	--bg-card: #12121c;
-	--bg-elevated: #1a1a26;
-	--bg-hover: #222232;
+	--bg-primary: #020205;
+	--bg-secondary: rgba(13, 13, 20, 0.7);
+	--bg-card: rgba(18, 18, 28, 0.6);
+	--bg-elevated: rgba(255, 255, 255, 0.08);
+	--bg-hover: rgba(255, 255, 255, 0.12);
 
-	--text-primary: #f8f9fa;
-	--text-secondary: #aab0b8;
-	--text-muted: #626971;
+	--text-primary: #ffffff;
+	--text-secondary: rgba(255, 255, 255, 0.7);
+	--text-muted: rgba(255, 255, 255, 0.45);
 
-	--border: rgba(255, 255, 255, 0.05);
-	--border-light: rgba(255, 255, 255, 0.08);
-	--accent-glow: rgba(124, 77, 255, 0.2);
+	--border: rgba(255, 255, 255, 0.1);
+	--border-light: rgba(255, 255, 255, 0.15);
+	--accent-glow: rgba(124, 77, 255, 0.3);
+
+	--glass-blur: blur(20px);
+	--glass-bg: rgba(255, 255, 255, 0.03);
+	--glass-border: 1px solid rgba(255, 255, 255, 0.1);
 
 	/* 과목 색상 - Vibrant & Refined */
 	--course-1: #9d7cff;
@@ -106,6 +110,75 @@ body {
 	min-height: 100dvh;
 	overflow-x: hidden;
 	-webkit-font-smoothing: antialiased;
+	position: relative;
+}
+
+/* ============================
+   글래스 배경 요소
+   ============================ */
+.bg-blobs {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	overflow: hidden;
+	background: radial-gradient(circle at 50% 50%, #0a0a1a 0%, #020205 100%);
+}
+
+.blob {
+	position: absolute;
+	border-radius: 50%;
+	filter: blur(60px); /* 블러를 조금 줄여 경계를 약간 더 선명하게 */
+	opacity: 0.5; /* 투명도를 살짝 높임 */
+	animation: float 12s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+.blob-1 {
+	width: 400px;
+	height: 400px;
+	background: var(--course-1);
+	top: -100px;
+	left: -100px;
+	animation-duration: 15s;
+}
+
+.blob-2 {
+	width: 350px;
+	height: 350px;
+	background: var(--course-5);
+	bottom: 10%;
+	right: -50px;
+	animation-duration: 18s;
+	animation-delay: -5s;
+}
+
+.blob-3 {
+	width: 300px;
+	height: 300px;
+	background: var(--course-3);
+	top: 30%;
+	left: 40%;
+	animation-duration: 12s;
+	animation-delay: -2s;
+}
+
+.blob-4 {
+	width: 250px;
+	height: 250px;
+	background: var(--course-2);
+	bottom: -50px;
+	left: 10%;
+	animation-duration: 16s;
+	animation-delay: -10s;
+}
+
+@keyframes float {
+	0% { transform: translate(0, 0) scale(1); }
+	33% { transform: translate(100px, -120px) scale(1.2); }
+	66% { transform: translate(-80px, 60px) scale(0.8); }
+	100% { transform: translate(0, 0) scale(1); }
 }
 
 /* ============================
@@ -118,10 +191,10 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: var(--space-xl) var(--space-xl) var(--space-lg);
-	background: rgba(5, 5, 8, 0.8);
-	backdrop-filter: blur(24px);
-	-webkit-backdrop-filter: blur(24px);
+	padding: var(--space-md) var(--space-xl) var(--space-md);
+	background: rgba(10, 10, 15, 0.4);
+	backdrop-filter: var(--glass-blur);
+	-webkit-backdrop-filter: var(--glass-blur);
 	border-bottom: 1px solid var(--border);
 }
 
@@ -170,9 +243,11 @@ body {
 	margin: var(--space-md) var(--space-md) var(--space-sm);
 	padding: var(--space-lg);
 	background: var(--bg-card);
+	backdrop-filter: var(--glass-blur);
+	-webkit-backdrop-filter: var(--glass-blur);
 	border-radius: var(--radius-xl);
-	border: 1px solid var(--border-light);
-	box-shadow: var(--shadow-md);
+	border: var(--glass-border);
+	box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 	transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -188,6 +263,10 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+}
+
+.today-banner.collapsed .today-nav {
+	display: none;
 }
 
 .today-banner:not(.collapsed) .today-header {
@@ -346,9 +425,11 @@ body {
 	margin: var(--space-md) var(--space-md) var(--space-2xl);
 	border-radius: var(--radius-lg);
 	overflow: hidden;
-	border: 1px solid var(--border-light);
+	border: var(--glass-border);
 	background: var(--bg-card);
-    box-shadow: var(--shadow-md);
+	backdrop-filter: var(--glass-blur);
+	-webkit-backdrop-filter: var(--glass-blur);
+	box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 .timetable-scroll {
@@ -433,12 +514,14 @@ body {
 	cursor: pointer;
 	overflow: hidden;
 	transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-	border: 1px solid transparent;
+	border: 1px solid rgba(255, 255, 255, 0.15);
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	z-index: 5;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
 }
 
 .course-block:active {
@@ -505,11 +588,13 @@ body {
 	padding: var(--space-xl);
 	margin-bottom: var(--space-md);
 	background: var(--bg-card);
+	backdrop-filter: var(--glass-blur);
+	-webkit-backdrop-filter: var(--glass-blur);
 	border-radius: var(--radius-lg);
-	border: 1px solid var(--border-light);
+	border: var(--glass-border);
 	cursor: pointer;
 	transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .list-card:active {
@@ -577,7 +662,9 @@ body {
 	width: 100%;
 	max-width: 500px;
 	max-height: 85dvh;
-	background: var(--bg-secondary);
+	background: rgba(15, 15, 25, 0.7);
+	backdrop-filter: var(--glass-blur);
+	-webkit-backdrop-filter: var(--glass-blur);
 	border-radius: var(--radius-xl) var(--radius-xl) 0 0;
 	padding: var(--space-2xl);
 	transform: translateY(100%);
@@ -585,6 +672,12 @@ body {
 	overflow-y: auto;
     position: relative;
     border-top: 1px solid var(--border-light);
+	box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+    touch-action: none; /* 드래그 구현을 위해 터치 액션 제어 */
+}
+
+.modal.dragging {
+    transition: none;
 }
 
 .modal-overlay.active .modal {
@@ -615,12 +708,18 @@ body {
 }
 
 .modal-handle {
-	width: 40px;
-	height: 5px;
-	background: var(--text-muted);
+	width: 50px;
+	height: 6px;
+	background: rgba(255, 255, 255, 0.2);
 	border-radius: 10px;
-	margin: 0 auto var(--space-2xl);
-    opacity: 0.5;
+	margin: -10px auto var(--space-2xl);
+    cursor: grab;
+    transition: background 0.3s ease;
+}
+
+.modal-handle:active {
+    cursor: grabbing;
+    background: rgba(255, 255, 255, 0.4);
 }
 
 .modal-course-emoji {
@@ -663,9 +762,11 @@ body {
 	align-items: flex-start;
 	gap: var(--space-xl);
 	padding: var(--space-lg);
-	background: var(--bg-card);
+	background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 	border-radius: var(--radius-md);
-    border: 1px solid var(--border-light);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .modal-info-icon {
@@ -716,12 +817,12 @@ body {
    ============================ */
 @media (min-width: 480px) {
 	:root {
-		--cell-height: 35px;
+		--cell-height: 52px;
 		--time-col-width: 60px;
 	}
 
 	.header {
-		padding: var(--space-2xl) var(--space-2xl) var(--space-xl);
+		padding: var(--space-md) var(--space-2xl) var(--space-md);
 	}
 
 	.timetable-container {
