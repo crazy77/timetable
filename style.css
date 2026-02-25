@@ -263,10 +263,13 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	gap: var(--space-md);
+	flex-wrap: nowrap; /* 레이아웃이 줄바꿈되지 않도록 강제 */
 }
 
+/* 접혔을 때 네비게이션 숨김 */
 .today-banner.collapsed .today-nav {
-	display: none;
+	display: none !important;
 }
 
 .today-banner:not(.collapsed) .today-header {
