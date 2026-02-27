@@ -364,6 +364,7 @@ function mergeContinuousBlocks() {
 				block.innerHTML = `
           <span class="course-name">${course.name}</span>
           <span class="course-room">${course.room}</span>
+		  <span class="course-room">${group[0].start}-${group[group.length - 1].end}</span>
         `;
 				block.addEventListener("click", () => openModal(course));
 				td.appendChild(block);
