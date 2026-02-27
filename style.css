@@ -175,10 +175,18 @@ body {
 }
 
 @keyframes float {
-	0% { transform: translate(0, 0) scale(1); }
-	33% { transform: translate(100px, -120px) scale(1.2); }
-	66% { transform: translate(-80px, 60px) scale(0.8); }
-	100% { transform: translate(0, 0) scale(1); }
+	0% {
+		transform: translate(0, 0) scale(1);
+	}
+	33% {
+		transform: translate(100px, -120px) scale(1.2);
+	}
+	66% {
+		transform: translate(-80px, 60px) scale(0.8);
+	}
+	100% {
+		transform: translate(0, 0) scale(1);
+	}
 }
 
 /* ============================
@@ -273,7 +281,7 @@ body {
 }
 
 .today-banner:not(.collapsed) .today-header {
-    margin-bottom: var(--space-lg);
+	margin-bottom: var(--space-lg);
 }
 
 .today-label {
@@ -344,12 +352,20 @@ body {
 	background: #00e676;
 	border-radius: 50%;
 	animation: pulse-dot 2s ease-in-out infinite;
-    box-shadow: 0 0 10px rgba(0, 230, 118, 0.4);
+	box-shadow: 0 0 10px rgba(0, 230, 118, 0.4);
 }
 
 @keyframes pulse-dot {
-	0%, 100% { opacity: 1; transform: scale(1); }
-	50% { opacity: 0.8; transform: scale(1.1); box-shadow: 0 0 15px rgba(0, 230, 118, 0.6); }
+	0%,
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 0.8;
+		transform: scale(1.1);
+		box-shadow: 0 0 15px rgba(0, 230, 118, 0.6);
+	}
 }
 
 .today-classes {
@@ -377,27 +393,41 @@ body {
 	border-radius: var(--radius-md);
 	cursor: pointer;
 	transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-    border: 1px solid transparent;
+	border: 1px solid transparent;
 }
 
 .today-class-item:active {
 	transform: scale(0.97);
-    filter: brightness(1.1);
+	filter: brightness(1.1);
+}
+
+.today-class-info {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	flex: 1;
 }
 
 .today-class-time {
-	font-size: 0.8rem;
+	font-size: 0.75rem;
 	font-weight: 700;
-	color: var(--text-secondary);
-	min-width: 96px;
+	color: var(--text-muted);
 	font-variant-numeric: tabular-nums;
-    letter-spacing: 0.02em;
+	letter-spacing: 0.02em;
 }
 
 .today-class-name {
-	font-size: 0.95rem;
-	font-weight: 700;
-	flex: 1;
+	font-size: 1rem;
+	font-weight: 800;
+}
+
+.today-class-meta {
+	display: flex;
+	gap: var(--space-md);
+	font-size: 0.75rem;
+	color: var(--text-secondary);
+	font-weight: 600;
+	margin-top: 2px;
 }
 
 .today-class-dot {
@@ -412,13 +442,13 @@ body {
 	padding: var(--space-2xl) var(--space-xl);
 	color: var(--text-muted);
 	font-size: 0.9rem;
-    font-weight: 500;
+	font-weight: 500;
 }
 
 .today-empty-icon {
 	font-size: 2.5rem;
 	margin-bottom: var(--space-md);
-    display: block;
+	display: block;
 }
 
 /* ============================
@@ -465,7 +495,7 @@ body {
 .timetable thead th.today-col {
 	color: var(--course-5);
 	position: relative;
-    background: var(--bg-hover);
+	background: var(--bg-hover);
 }
 
 .timetable thead th.today-col::after {
@@ -476,7 +506,7 @@ body {
 	right: 0;
 	height: 3px;
 	background: var(--course-5);
-    box-shadow: 0 0 10px var(--course-5);
+	box-shadow: 0 0 10px var(--course-5);
 }
 
 .timetable tbody tr {
@@ -498,7 +528,7 @@ body {
 	padding-top: var(--space-md);
 	font-variant-numeric: tabular-nums;
 	border-right: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.01);
+	background: rgba(255, 255, 255, 0.01);
 }
 
 .timetable tbody td.today-col-cell {
@@ -513,7 +543,7 @@ body {
 	right: 3px;
 	border-radius: var(--radius-md);
 	padding: var(--space-sm);
-	padding-right:0;
+	padding-right: 0;
 	cursor: pointer;
 	overflow: hidden;
 	transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
@@ -522,7 +552,7 @@ body {
 	flex-direction: column;
 	justify-content: flex-start;
 	z-index: 5;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 	backdrop-filter: blur(8px);
 	-webkit-backdrop-filter: blur(8px);
 }
@@ -530,7 +560,7 @@ body {
 .course-block:active {
 	transform: scale(0.95);
 	filter: brightness(1.2);
-    z-index: 10;
+	z-index: 10;
 }
 
 .course-block .course-name {
@@ -542,7 +572,7 @@ body {
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
-    letter-spacing: -0.01em;
+	letter-spacing: -0.01em;
 }
 
 .course-block .course-room {
@@ -550,9 +580,9 @@ body {
 	opacity: 0.8;
 	margin-top: 4px;
 	font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 /* ============================
@@ -597,13 +627,13 @@ body {
 	border: var(--glass-border);
 	cursor: pointer;
 	transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .list-card:active {
 	transform: scale(0.97) translateY(2px);
 	background: var(--bg-elevated);
-    box-shadow: none;
+	box-shadow: none;
 }
 
 .list-card-indicator {
@@ -620,7 +650,7 @@ body {
 	font-size: 1.1rem;
 	font-weight: 800;
 	margin-bottom: var(--space-sm);
-    letter-spacing: -0.02em;
+	letter-spacing: -0.02em;
 }
 
 .list-card-meta {
@@ -629,7 +659,7 @@ body {
 	gap: var(--space-sm) var(--space-xl);
 	font-size: 0.85rem;
 	color: var(--text-secondary);
-    font-weight: 600;
+	font-weight: 600;
 }
 
 .list-card-meta-item {
@@ -673,14 +703,14 @@ body {
 	transform: translateY(100%);
 	transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 	overflow-y: auto;
-    position: relative;
-    border-top: 1px solid var(--border-light);
+	position: relative;
+	border-top: 1px solid var(--border-light);
 	box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
-    touch-action: none; /* 드래그 구현을 위해 터치 액션 제어 */
+	touch-action: none; /* 드래그 구현을 위해 터치 액션 제어 */
 }
 
 .modal.dragging {
-    transition: none;
+	transition: none;
 }
 
 .modal-overlay.active .modal {
@@ -707,7 +737,7 @@ body {
 
 .modal-close:active {
 	background: var(--bg-hover);
-    transform: scale(0.9);
+	transform: scale(0.9);
 }
 
 .modal-handle {
@@ -716,13 +746,13 @@ body {
 	background: rgba(255, 255, 255, 0.2);
 	border-radius: 10px;
 	margin: -10px auto var(--space-2xl);
-    cursor: grab;
-    transition: background 0.3s ease;
+	cursor: grab;
+	transition: background 0.3s ease;
 }
 
 .modal-handle:active {
-    cursor: grabbing;
-    background: rgba(255, 255, 255, 0.4);
+	cursor: grabbing;
+	background: rgba(255, 255, 255, 0.4);
 }
 
 .modal-course-emoji {
@@ -739,7 +769,7 @@ body {
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
-    line-height: 1.2;
+	line-height: 1.2;
 }
 
 .modal-course-type {
@@ -749,8 +779,8 @@ body {
 	font-size: 0.75rem;
 	font-weight: 800;
 	margin-bottom: var(--space-2xl);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
 }
 
 .modal-info-list {
@@ -766,10 +796,10 @@ body {
 	gap: var(--space-xl);
 	padding: var(--space-lg);
 	background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
 	border-radius: var(--radius-md);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+	border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .modal-info-icon {
@@ -786,15 +816,15 @@ body {
 	font-weight: 800;
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
-    margin-bottom: 2px;
+	margin-bottom: 2px;
 }
 
 .modal-info-value {
 	font-size: 0.95rem;
 	font-weight: 700;
 	margin-top: 4px;
-    line-height: 1.5;
-    color: var(--text-primary);
+	line-height: 1.5;
+	color: var(--text-primary);
 }
 
 /* ============================
@@ -858,7 +888,7 @@ body {
 
 	.modal {
 		transform: translateY(32px);
-        border: 1px solid var(--border-light);
+		border: 1px solid var(--border-light);
 	}
 }
 
