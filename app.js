@@ -46,8 +46,8 @@ const courses = [
 		room: "비대면",
 		year: 1,
 		times: [
-			{ day: "수", start: "09:00", end: "09:50" },
-			{ day: "수", start: "10:00", end: "10:50" },
+			{ day: "화", start: "11:00", end: "11:50" },
+			{ day: "화", start: "12:00", end: "12:50" },
 		],
 	},
 	{
